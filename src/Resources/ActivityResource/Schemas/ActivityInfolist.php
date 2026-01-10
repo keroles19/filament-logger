@@ -92,10 +92,11 @@ class ActivityInfolist
                     ->columnSpan(4)
                     ->visible(function (?Model $record) {
                         /** @var Activity&ActivityModel $record */
-                        if (!$record->properties?->count()) {
+                        if (! $record->properties?->count()) {
                             return false;
                         }
                         $properties = $record->properties->except(['attributes', 'old']);
+
                         return $properties->count() > 0;
                     })
                     ->schema([
