@@ -76,7 +76,12 @@ abstract class AbstractModelLogger
 
     public function created(Model $model): void
     {
-        $this->log($model, 'Created', attributes: $model->getAttributes());
+        $attributes = $this->getLoggableAttributes($model, $model->getAttributes());
+        
+        // For created events, we store in 'attributes' as there's no 'old' value
+        $properties = ['attributes' => $attributes];
+        
+        $this->log($model, 'Created', attributes: $properties);
     }
 
     public function updated(Model $model): void
@@ -88,7 +93,25 @@ abstract class AbstractModelLogger
             return;
         }
 
-        $this->log($model, 'Updated', attributes: $changes);
+        // Get old values from original attributes
+        $original = $model->getOriginal();
+        $oldValues = [];
+        foreach (array_keys($changes) as $key) {
+            if (isset($original[$key])) {
+                $oldValues[$key] = $original[$key];
+            }
+        }
+
+        // Build properties with old and new values
+        $properties = [];
+        if (!empty($oldValues)) {
+            $properties['old'] = $this->getLoggableAttributes($model, $oldValues);
+        }
+        if (!empty($changes)) {
+            $properties['attributes'] = $this->getLoggableAttributes($model, $changes);
+        }
+
+        $this->log($model, 'Updated', attributes: $properties);
     }
 
     public function deleted(Model $model): void

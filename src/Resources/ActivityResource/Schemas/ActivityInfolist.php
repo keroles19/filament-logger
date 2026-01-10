@@ -64,34 +64,45 @@ class ActivityInfolist
                             }),
                     ]),
 
-                Section::make()
+                Section::make('Old')
+                    ->heading(__('filament-logger::filament-logger.resource.label.old'))
+                    ->columns()
+                    ->columnSpan(2)
+                    ->visible(fn (?Model $record) => $record?->properties?->has('old') ?? false)
+                    ->schema([
+                        KeyValueEntry::make('properties.old')
+                            ->label('')
+                            ->columnSpanFull(),
+                    ]),
+
+                Section::make('New')
+                    ->heading(__('filament-logger::filament-logger.resource.label.new'))
+                    ->columns()
+                    ->columnSpan(2)
+                    ->visible(fn (?Model $record) => $record?->properties?->has('attributes') ?? false)
+                    ->schema([
+                        KeyValueEntry::make('properties.attributes')
+                            ->label('')
+                            ->columnSpanFull(),
+                    ]),
+
+                Section::make('Properties')
+                    ->heading(__('filament-logger::filament-logger.resource.label.properties'))
                     ->columns()
                     ->columnSpan(4)
-                    ->visible(fn ($record) => $record->properties?->count() > 0)
-                    ->schema(function (?Model $record) {
+                    ->visible(function (?Model $record) {
                         /** @var Activity&ActivityModel $record */
+                        if (!$record->properties?->count()) {
+                            return false;
+                        }
                         $properties = $record->properties->except(['attributes', 'old']);
-
-                        $schema = [];
-
-                        if ($properties->count()) {
-                            $schema[] = KeyValueEntry::make('properties')
-                                ->label(__('filament-logger::filament-logger.resource.label.properties'))
-                                ->columnSpanFull();
-                        }
-
-                        if ($record->properties->get('old')) {
-                            $schema[] = KeyValueEntry::make('properties.old')
-                                ->label(__('filament-logger::filament-logger.resource.label.old'));
-                        }
-
-                        if ($record->properties->get('attributes')) {
-                            $schema[] = KeyValueEntry::make('properties.attributes')
-                                ->label(__('filament-logger::filament-logger.resource.label.new'));
-                        }
-
-                        return $schema;
-                    }),
+                        return $properties->count() > 0;
+                    })
+                    ->schema([
+                        KeyValueEntry::make('properties')
+                            ->label('')
+                            ->columnSpanFull(),
+                    ]),
             ]);
     }
 }
