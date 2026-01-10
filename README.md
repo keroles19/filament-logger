@@ -4,8 +4,8 @@
 
 # Activity logger for filament
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/keroles/filament-logger.svg?style=for-the-badge)](https://packagist.org/packages/keroles/filament-logger)
-[![Total Downloads](https://img.shields.io/packagist/dt/keroles/filament-logger.svg?style=for-the-badge)](https://packagist.org/packages/keroles/filament-logger)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/kerodev/filament-logger.svg?style=for-the-badge)](https://packagist.org/packages/kerodev/filament-logger)
+[![Total Downloads](https://img.shields.io/packagist/dt/kerodev/filament-logger.svg?style=for-the-badge)](https://packagist.org/packages/kerodev/filament-logger)
 
 <p align="center" class="filament-hidden">
   <img alt="logger banner" src="https://raw.githubusercontent.com/keroles19/filament-logger/main/art/banner.jpeg" />
@@ -37,7 +37,7 @@ This package uses [spatie/laravel-activitylog](https://spatie.be/docs/laravel-ac
 You can install the package via composer:
 
 ```bash
-composer require keroles/filament-logger
+composer require kerodev/filament-logger
 ```
 After that run the install command:
 

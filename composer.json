@@ -1,8 +1,8 @@
 {
-    "name": "keroles/filament-logger",
+    "name": "kerodev/filament-logger",
     "description": "Activity logger for filament",
     "keywords": [
-        "keroles",
+        "kerodev",
         "Z3d0X",
         "laravel",
         "filament-logger",
