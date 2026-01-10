@@ -1,10 +1,10 @@
 <?php
 
-namespace Jacobtims\FilamentLogger\Tests;
+namespace Keroles\FilamentLogger\Tests;
 
 use Filament\FilamentServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Jacobtims\FilamentLogger\FilamentLoggerServiceProvider;
+use Keroles\FilamentLogger\FilamentLoggerServiceProvider;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
@@ -15,7 +15,7 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Jacobtims\\FilamentLogger\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'Keroles\\FilamentLogger\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 

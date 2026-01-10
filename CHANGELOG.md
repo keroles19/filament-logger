@@ -2,6 +2,22 @@
 
 All notable changes to `filament-logger` will be documented in this file.
 
+## 1.0.1 - 2026-01-10
+
+### What's Changed
+
+* Forked from Jacobtims/filament-logger to continue maintenance
+* Fixed compatibility with spatie activity model event logging schema (merged from PR #2)
+* Package name changed to `keroles/filament-logger`
+* Namespace changed to `Keroles`
+
+### Credits
+
+* Original package by @Z3d0X
+* Filament 4 port by @Jacobtims
+* Old/new attributes fix by @Ahmed-Shaheen2
+* Current maintainer: @keroles19
+
 ## 1.0.0 - 2025-08-20
 
 ### What's Changed

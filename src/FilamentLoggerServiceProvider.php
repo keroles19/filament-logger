@@ -1,6 +1,6 @@
 <?php
 
-namespace Jacobtims\FilamentLogger;
+namespace Keroles\FilamentLogger;
 
 use Filament\Facades\Filament;
 use Filament\Panel;

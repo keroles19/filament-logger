@@ -1,6 +1,6 @@
 <?php
 
-namespace Jacobtims\FilamentLogger\Resources\ActivityResource\Tables;
+namespace Keroles\FilamentLogger\Resources\ActivityResource\Tables;
 
 use Filament\Facades\Filament;
 use Filament\Forms\Components\DatePicker;

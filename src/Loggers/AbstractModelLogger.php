@@ -1,6 +1,6 @@
 <?php
 
-namespace Jacobtims\FilamentLogger\Loggers;
+namespace Keroles\FilamentLogger\Loggers;
 
 use Filament\Facades\Filament;
 use Illuminate\Auth\GenericUser;

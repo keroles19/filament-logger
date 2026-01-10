@@ -1,6 +1,6 @@
 <?php
 
-namespace Jacobtims\FilamentLogger\Loggers;
+namespace Keroles\FilamentLogger\Loggers;
 
 use Illuminate\Notifications\Events\NotificationFailed;
 use Illuminate\Notifications\Events\NotificationSent;

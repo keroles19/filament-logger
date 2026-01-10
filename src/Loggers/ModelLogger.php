@@ -1,6 +1,6 @@
 <?php
 
-namespace Jacobtims\FilamentLogger\Loggers;
+namespace Keroles\FilamentLogger\Loggers;
 
 class ModelLogger extends AbstractModelLogger
 {

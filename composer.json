@@ -1,24 +1,30 @@
 {
-    "name": "jacobtims/filament-logger",
+    "name": "keroles/filament-logger",
     "description": "Activity logger for filament",
     "keywords": [
+        "keroles",
         "Jacobtims",
         "Z3d0X",
         "laravel",
         "filament-logger"
     ],
-    "homepage": "https://github.com/jacobtims/filament-logger",
+    "homepage": "https://github.com/keroles19/filament-logger",
     "license": "MIT",
     "authors": [
         {
             "name": "Ziyaan Hassan",
             "email": "ziyaan2010@gmail.com",
-            "role": "Developer"
+            "role": "Original Developer"
         },
         {
             "name": "Jacobtims",
             "email": "jacobtimmer04@gmail.com",
-            "role": "Developer"
+            "role": "Filament 4 Port"
+        },
+        {
+            "name": "Keroles Atef",
+            "email": "keroles.atef19@gmail.com",
+            "role": "Maintainer"
         }
     ],
     "require": {
@@ -43,13 +49,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Jacobtims\\FilamentLogger\\": "src",
-            "Jacobtims\\FilamentLogger\\Database\\Factories\\": "database/factories"
+            "Keroles\\FilamentLogger\\": "src",
+            "Keroles\\FilamentLogger\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Jacobtims\\FilamentLogger\\Tests\\": "tests"
+            "Keroles\\FilamentLogger\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -67,10 +73,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Jacobtims\\FilamentLogger\\FilamentLoggerServiceProvider"
+                "Keroles\\FilamentLogger\\FilamentLoggerServiceProvider"
             ],
             "aliases": {
-                "FilamentLogger": "Jacobtims\\FilamentLogger\\Facades\\FilamentLogger"
+                "FilamentLogger": "Keroles\\FilamentLogger\\Facades\\FilamentLogger"
             }
         }
     },

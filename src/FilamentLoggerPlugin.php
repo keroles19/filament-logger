@@ -1,10 +1,10 @@
 <?php
 
-namespace Jacobtims\FilamentLogger;
+namespace Keroles\FilamentLogger;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
-use Jacobtims\FilamentLogger\Resources\ActivityResource;
+use Keroles\FilamentLogger\Resources\ActivityResource;
 
 class FilamentLoggerPlugin implements Plugin
 {

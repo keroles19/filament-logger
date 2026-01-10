@@ -1,14 +1,15 @@
 > [!NOTE]
-> This is a fork of [Z3d0X/filament-logger](https://github.com/Z3d0X/filament-logger).
-> I am now maintaining this project and will continue providing updates and improvements.
+> This is a fork of [Z3d0X/filament-logger](https://github.com/Z3d0X/filament-logger) with Filament 4 support.
+> Originally ported to Filament 4 by [Jacobtims](https://github.com/Jacobtims/filament-logger).
+> Now maintained by [keroles19](https://github.com/keroles19) with additional improvements and bug fixes.
 
 # Activity logger for filament
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/jacobtims/filament-logger.svg?style=for-the-badge)](https://packagist.org/packages/jacobtims/filament-logger)
-[![Total Downloads](https://img.shields.io/packagist/dt/jacobtims/filament-logger.svg?style=for-the-badge)](https://packagist.org/packages/jacobtims/filament-logger)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/keroles/filament-logger.svg?style=for-the-badge)](https://packagist.org/packages/keroles/filament-logger)
+[![Total Downloads](https://img.shields.io/packagist/dt/keroles/filament-logger.svg?style=for-the-badge)](https://packagist.org/packages/keroles/filament-logger)
 
 <p align="center" class="filament-hidden">
-  <img alt="logger banner" src="https://raw.githubusercontent.com/jacobtims/filament-logger/main/art/banner.jpeg" />
+  <img alt="logger banner" src="https://raw.githubusercontent.com/keroles19/filament-logger/main/art/banner.jpeg" />
 </p>
 
 Configurable activity logger for filament.
@@ -37,7 +38,7 @@ This package uses [spatie/laravel-activitylog](https://spatie.be/docs/laravel-ac
 You can install the package via composer:
 
 ```bash
-composer require jacobtims/filament-logger
+composer require keroles/filament-logger
 ```
 After that run the install command:
 
@@ -48,7 +49,7 @@ This will publish the config & migrations from `spatie/laravel-activitylog`
 
 Register the plugin in your PanelProvider:
 ```php
-use Jacobtims\FilamentLogger\FilamentLoggerPlugin;
+use Keroles\FilamentLogger\FilamentLoggerPlugin;
 
 public function panel(Panel $panel): Panel
 {

@@ -1,16 +1,16 @@
 <?php
 
-namespace Jacobtims\FilamentLogger\Resources;
+namespace Keroles\FilamentLogger\Resources;
 
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use Jacobtims\FilamentLogger\Resources\ActivityResource\Pages\ListActivities;
-use Jacobtims\FilamentLogger\Resources\ActivityResource\Pages\ViewActivity;
-use Jacobtims\FilamentLogger\Resources\ActivityResource\Schemas\ActivityInfolist;
-use Jacobtims\FilamentLogger\Resources\ActivityResource\Tables\ActivitiesTable;
+use Keroles\FilamentLogger\Resources\ActivityResource\Pages\ListActivities;
+use Keroles\FilamentLogger\Resources\ActivityResource\Pages\ViewActivity;
+use Keroles\FilamentLogger\Resources\ActivityResource\Schemas\ActivityInfolist;
+use Keroles\FilamentLogger\Resources\ActivityResource\Tables\ActivitiesTable;
 use Spatie\Activitylog\ActivitylogServiceProvider;
 
 class ActivityResource extends Resource

@@ -1,6 +1,6 @@
 <?php
 
-namespace Jacobtims\FilamentLogger\Resources\ActivityResource\Pages;
+namespace Keroles\FilamentLogger\Resources\ActivityResource\Pages;
 
 use Filament\Resources\Pages\ViewRecord;
 

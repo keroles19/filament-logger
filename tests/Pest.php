@@ -1,5 +1,5 @@
 <?php
 
-use Jacobtims\FilamentLogger\Tests\TestCase;
+use Keroles\FilamentLogger\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);
