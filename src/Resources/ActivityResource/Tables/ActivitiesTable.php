@@ -70,9 +70,10 @@ class ActivitiesTable
 
                 SelectFilter::make('causer_id')
                     ->label(__('filament-logger::filament-logger.resource.label.user'))
-                    ->relationship('causer', 'name')
+                    ->options(function () {
+                        return static::getUsersList();
+                    })
                     ->searchable()
-                    ->preload()
                     ->multiple(),
 
                 Filter::make('properties->old')
@@ -202,5 +203,41 @@ class ActivitiesTable
             ] : [],
             $customs,
         );
+    }
+
+    protected static function getUsersList(): array
+    {
+        $activityModel = config('activitylog.activity_model');
+
+        // Get distinct causer types and IDs from activity log
+        $causers = $activityModel::query()
+            ->select('causer_type', 'causer_id')
+            ->whereNotNull('causer_type')
+            ->whereNotNull('causer_id')
+            ->distinct()
+            ->get()
+            ->groupBy('causer_type');
+
+        $users = [];
+
+        foreach ($causers as $causerType => $activities) {
+            if (! class_exists($causerType)) {
+                continue;
+            }
+
+            $causerIds = $activities->pluck('causer_id')->unique()->toArray();
+            $models = $causerType::whereIn('id', $causerIds)->get();
+
+            foreach ($models as $model) {
+                // Use getName() method if available, otherwise try common name attributes
+                $name = method_exists($model, 'getName')
+                    ? $model->getName()
+                    : ($model->name ?? $model->email ?? $model->username ?? "User #{$model->id}");
+
+                $users[$model->id] = $name;
+            }
+        }
+
+        return $users;
     }
 }
