@@ -48,16 +48,14 @@ After pushing:
 This is a maintained fork of the original filament-logger package with Filament 4 support.
 
 ### Changes in this release:
-- Forked from Jacobtims/filament-logger
-- Fixed compatibility with spatie activity model event logging (PR #2)
+- Forked from Z3d0X/filament-logger with Filament 4 support
 - Package rebranded to keroles/filament-logger
 - Namespace updated to Keroles\FilamentLogger
 - Full Filament 4 compatibility verified
+- Bug fixes and improvements
 
 ### Credits:
 - Original package: @Z3d0X
-- Filament 4 port: @Jacobtims
-- Bug fix: @Ahmed-Shaheen2
 - Current maintainer: @keroles19
 
 ### Installation:
@@ -108,13 +106,8 @@ Consider adding:
 # Fetch updates from upstream (original Z3d0X repository)
 git fetch upstream
 
-# Or from Jacobtims if needed
-git fetch jacobtims
-
 # Merge if there are useful updates
 git merge upstream/main
-# or
-git merge jacobtims/main
 ```
 
 ### Monitor Issues

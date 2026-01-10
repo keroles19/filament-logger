@@ -1,7 +1,6 @@
 > [!NOTE]
 > This is a fork of [Z3d0X/filament-logger](https://github.com/Z3d0X/filament-logger) with Filament 4 support.
-> Originally ported to Filament 4 by [Jacobtims](https://github.com/Jacobtims/filament-logger).
-> Now maintained by [keroles19](https://github.com/keroles19) with additional improvements and bug fixes.
+> Now maintained by [keroles19](https://github.com/keroles19) with improvements and bug fixes.
 
 # Activity logger for filament
 
@@ -111,8 +110,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [Jacobtims](https://github.com/Jacobtims)
-- [Ziyaan Hassan](https://github.com/Z3d0X)
+- [Ziyaan Hassan](https://github.com/Z3d0X) - Original package creator
 - [Spatie Activitylog Contributors](https://github.com/spatie/laravel-activitylog#credits) 
 - [All Contributors](../../contributors)
 

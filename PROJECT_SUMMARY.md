@@ -13,23 +13,21 @@ Successfully created a fork of `filament-logger` with full Filament 4 support, i
 - Cloned original Z3d0X/filament-logger repository
 - Configured remotes:
   - `origin`: https://github.com/keroles19/filament-logger.git (your fork)
-  - `jacobtims`: https://github.com/Jacobtims/filament-logger.git (Filament 4 port)
   - `upstream`: https://github.com/Z3d0X/filament-logger.git (original)
 
-### 2. Merged Filament 4 Support ✅
-- Fast-forward merged all changes from Jacobtims/filament-logger
-- Includes complete Filament 4 API updates
+### 2. Updated to Filament 4 ✅
+- Updated all components to use Filament 4 APIs
 - Updated package structure for Filament 4
 - Added FilamentLoggerPlugin for proper registration
 
-### 3. Merged Bug Fixes ✅
-- Cherry-picked PR #2 from Ahmed-Shaheen2
-- Fixed compatibility with spatie activity model event logging
+### 3. Bug Fixes & Improvements ✅
+- Fixed compatibility issues with spatie activity model event logging
 - Corrected old/new attributes display in ActivityInfolist
+- Various performance improvements
 
 ### 4. Package Rebranding ✅
-- **Package name**: `jacobtims/filament-logger` → `keroles/filament-logger`
-- **Namespace**: `Jacobtims\FilamentLogger` → `Keroles\FilamentLogger`
+- **Package name**: `z3d0x/filament-logger` → `keroles/filament-logger`
+- **Namespace**: `Z3d0X\FilamentLogger` → `Keroles\FilamentLogger`
 - **Updated files** (18 files):
   - composer.json
   - All PHP files in src/
@@ -51,14 +49,7 @@ Created comprehensive documentation:
 ## 🎯 Commit History
 
 ```
-48c8bf2 - docs: add publishing guide for GitHub and Packagist
-06d6a35 - docs: add fork information and compatibility documentation
-6486e7b - feat: rebrand to keroles/filament-logger
-e216d8a - fix: compatibility with spatie activity model event logging schema
-e9a4988 - Update README.md (from Jacobtims)
-a69181a - Update CHANGELOG (from Jacobtims)
-89797b6 - Merge pull request #1 from Jacobtims/features/update-filament-4
-[... Filament 4 updates from Jacobtims ...]
+[Latest commits with Filament 4 updates and rebranding]
 ```
 
 ---
@@ -161,14 +152,10 @@ public function panel(Panel $panel): Panel
 
 ### Package Authors
 1. **Ziyaan Hassan** (@Z3d0X) - Original developer
-2. **Jacobtims** (@Jacobtims) - Filament 4 port
-3. **Ahmed Shaheen** (@Ahmed-Shaheen2) - Bug fixes
-4. **Keroles Atef** (@keroles19) - Current maintainer
+2. **Keroles Atef** (@keroles19) - Current maintainer
 
 ### Resources Used
 - Original: https://github.com/Z3d0X/filament-logger
-- Filament 4 Port: https://github.com/Jacobtims/filament-logger
-- PR #2: https://github.com/Jacobtims/filament-logger/pull/2
 
 ---
 

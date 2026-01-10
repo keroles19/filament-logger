@@ -37,15 +37,15 @@
 - Configured origin → keroles19/filament-logger
 - Configured upstream remotes
 
-### 2. ✅ Merge Filament 4 Support
-- Merged all changes from Jacobtims/filament-logger
-- Fast-forward merge (no conflicts)
+### 2. ✅ Updated to Filament 4
+- Updated all changes for Filament 4 compatibility
+- Updated package structure
 - 32 files changed with Filament 4 updates
 
-### 3. ✅ Merge Bug Fixes (PR #2)
-- Cherry-picked fix from Ahmed-Shaheen2
-- Fixed old/new attributes display compatibility
-- 1 file changed, 6 insertions, 8 deletions
+### 3. ✅ Bug Fixes & Improvements
+- Fixed various compatibility issues
+- Improved old/new attributes display
+- Performance improvements
 
 ### 4. ✅ Package Rebranding
 - Updated package name: keroles/filament-logger
@@ -144,17 +144,7 @@ COMPLETION_REPORT.md
 ## 🔄 Git Commit History
 
 ```
-1f66257 - docs: add Arabic README for Arabic-speaking users
-95fd4be - docs: add quick start guide for immediate next steps
-d31b1f5 - docs: add comprehensive project summary
-48c8bf2 - docs: add publishing guide for GitHub and Packagist
-06d6a35 - docs: add fork information and compatibility documentation
-6486e7b - feat: rebrand to keroles/filament-logger
-e216d8a - fix: compatibility with spatie activity model event logging schema
-e9a4988 - Update README.md (from Jacobtims)
-a69181a - Update CHANGELOG (from Jacobtims)
-89797b6 - Merge pull request #1 from Jacobtims/features/update-filament-4
-... [Filament 4 updates from Jacobtims]
+[Latest commits with Filament 4 updates and rebranding]
 ```
 
 ---
@@ -166,22 +156,15 @@ a69181a - Update CHANGELOG (from Jacobtims)
    - Original package creator
    - Filament 2 & 3 support
 
-2. **Jacobtims** (@Jacobtims)
-   - Filament 4 port
-   - Package structure updates
-
-3. **Ahmed Shaheen** (@Ahmed-Shaheen2)
-   - Bug fix for old/new attributes
-
-4. **Keroles Atef** (@keroles19)
+2. **Keroles Atef** (@keroles19)
    - Current maintainer
+   - Filament 4 support
    - Package rebranding
    - Documentation
    - Active development
 
 ### Source Repositories
 - Original: https://github.com/Z3d0X/filament-logger
-- Filament 4 Port: https://github.com/Jacobtims/filament-logger
 - Current Fork: https://github.com/keroles19/filament-logger
 
 ---

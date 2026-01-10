@@ -125,12 +125,6 @@ If migrating from another version:
 3. Register plugin instead of resource directly
 4. Update configuration file
 
-### From Jacobtims/filament-logger:
-1. Update composer requirement: `keroles/filament-logger`
-2. Update namespace: `Jacobtims` → `Keroles`
-3. Update config file references
-4. Clear cache: `php artisan optimize:clear`
-
 ## ✅ Summary
 
 All components have been verified to use Filament 4 APIs and follow the package structure requirements. The package is ready for use with Filament 4 projects.

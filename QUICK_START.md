@@ -77,12 +77,7 @@ git push origin --tags
 
 ### Git History
 ```
-d31b1f5 - docs: add comprehensive project summary
-48c8bf2 - docs: add publishing guide
-06d6a35 - docs: add fork info and compatibility
-6486e7b - feat: rebrand to keroles/filament-logger
-e216d8a - fix: spatie activity model compatibility
-[... merged Filament 4 changes from Jacobtims ...]
+[Latest commits with Filament 4 support and rebranding]
 ```
 
 ---

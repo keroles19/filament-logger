@@ -2,8 +2,7 @@
 
 > [!NOTE]
 > هذا fork من حزمة [Z3d0X/filament-logger](https://github.com/Z3d0X/filament-logger) الأصلية مع دعم Filament 4.
-> تم نقله في الأصل إلى Filament 4 بواسطة [Jacobtims](https://github.com/Jacobtims/filament-logger).
-> يتم صيانته حالياً بواسطة [keroles19](https://github.com/keroles19) مع تحسينات وإصلاحات إضافية.
+> يتم صيانته حالياً بواسطة [keroles19](https://github.com/keroles19) مع تحسينات وإصلاحات.
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/keroles/filament-logger.svg?style=for-the-badge)](https://packagist.org/packages/keroles/filament-logger)
 [![Total Downloads](https://img.shields.io/packagist/dt/keroles/filament-logger.svg?style=for-the-badge)](https://packagist.org/packages/keroles/filament-logger)
@@ -143,15 +142,13 @@ php artisan vendor:publish --tag="filament-logger-translations"
 
 ### التحسينات المدمجة
 - ✅ التوافق الكامل مع Filament 4
-- ✅ إصلاح عرض القيم القديمة/الجديدة (old/new attributes) من PR #2
+- ✅ إصلاحات للأخطاء وتحسينات في الأداء
 - ✅ بنية حديثة للإضافات (Plugin architecture)
 - ✅ توثيق محسّن
 - ✅ صيانة نشطة
 
 ### الاعتمادات
 - **المطور الأصلي**: Ziyaan Hassan (@Z3d0X)
-- **نقل إلى Filament 4**: Jacobtims (@Jacobtims)
-- **إصلاح الأخطاء**: Ahmed Shaheen (@Ahmed-Shaheen2)
 - **المشرف الحالي**: Keroles Atef (@keroles19)
 
 ## الترخيص

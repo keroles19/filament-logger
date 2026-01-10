@@ -6,36 +6,28 @@ All notable changes to `filament-logger` will be documented in this file.
 
 ### What's Changed
 
-* Forked from Jacobtims/filament-logger to continue maintenance
-* Fixed compatibility with spatie activity model event logging schema (merged from PR #2)
+* Forked from Z3d0X/filament-logger with Filament 4 support
 * Package name changed to `keroles/filament-logger`
 * Namespace changed to `Keroles`
+* Various bug fixes and improvements
 
 ### Credits
 
 * Original package by @Z3d0X
-* Filament 4 port by @Jacobtims
-* Old/new attributes fix by @Ahmed-Shaheen2
 * Current maintainer: @keroles19
 
 ## 1.0.0 - 2025-08-20
 
 ### What's Changed
 
-* Update to Filament 4 by @Jacobtims in https://github.com/Jacobtims/filament-logger/pull/1
-
-### New Contributors
-
-* @Jacobtims made their first contribution in https://github.com/Jacobtims/filament-logger/pull/1
+* Update to Filament 4
+* Package structure modernization
 
 ### Breaking Changes
 
 * Requires Filament v4.x
-* Package name changed from `z3d0x/filament-logger` to `jacobtims/filament-logger`
-* Namespace changed from `Z3d0X` to `Jacobtims`
+* Package name changed from `z3d0x/filament-logger` to support Filament 4
 * Register plugin using `FilamentLoggerPlugin`. See [README.md](https://github.com/Z3d0X/filament-logger?tab=readme-ov-file#installation).
-
-**Full Changelog**: https://github.com/Jacobtims/filament-logger/compare/v0.8.0...v1.0.0
 
 ## v0.8.0 - 2025-03-04
 

@@ -8,23 +8,23 @@ This is a fork of the popular `filament-logger` package, now maintained as `kero
 
 1. **Original Package**: [Z3d0X/filament-logger](https://github.com/Z3d0X/filament-logger)
    - Created by Ziyaan Hassan (@Z3d0X)
-   - Supported Filament 3
+   - Supported Filament 2 & 3
    - No longer maintained
 
-2. **Filament 4 Port**: [Jacobtims/filament-logger](https://github.com/Jacobtims/filament-logger)
-   - Ported to Filament 4 by @Jacobtims
-   - Updated package structure and APIs
-
-3. **Current Fork**: [keroles19/filament-logger](https://github.com/keroles19/filament-logger)
+2. **Current Fork**: [keroles19/filament-logger](https://github.com/keroles19/filament-logger)
    - Maintained by Keroles Atef (@keroles19)
+   - Filament 4 support
    - Includes bug fixes and improvements
    - Continues active development
 
 ### Key Changes in This Fork
 
-#### Merged Improvements
-- ✅ Filament 4 compatibility (from Jacobtims/filament-logger)
-- ✅ Fixed old/new attributes display for spatie activity model events (PR #2 by @Ahmed-Shaheen2)
+#### Improvements
+- ✅ Full Filament 4 compatibility
+- ✅ Bug fixes and performance improvements
+- ✅ Modern plugin architecture
+- ✅ Enhanced documentation
+- ✅ Active maintenance
 
 #### Package Updates
 - Package name: `keroles/filament-logger`
@@ -64,8 +64,6 @@ public function panel(Panel $panel): Panel
 ### Credits
 
 - **Original Developer**: Ziyaan Hassan (@Z3d0X)
-- **Filament 4 Port**: Jacobtims (@Jacobtims)
-- **Bug Fixes**: Ahmed Shaheen (@Ahmed-Shaheen2)
 - **Current Maintainer**: Keroles Atef (@keroles19)
 
 ### License
