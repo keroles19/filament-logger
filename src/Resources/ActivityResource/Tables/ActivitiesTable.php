@@ -68,6 +68,13 @@ class ActivitiesTable
                     ->label(__('filament-logger::filament-logger.resource.label.subject_type'))
                     ->options(static::getSubjectTypeList()),
 
+                SelectFilter::make('causer_id')
+                    ->label(__('filament-logger::filament-logger.resource.label.user'))
+                    ->relationship('causer', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->multiple(),
+
                 Filter::make('properties->old')
                     ->indicateUsing(function (array $data): ?string {
                         if (! $data['old']) {
