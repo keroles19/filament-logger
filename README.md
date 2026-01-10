@@ -7,9 +7,6 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/kerodev/filament-logger.svg?style=for-the-badge)](https://packagist.org/packages/kerodev/filament-logger)
 [![Total Downloads](https://img.shields.io/packagist/dt/kerodev/filament-logger.svg?style=for-the-badge)](https://packagist.org/packages/kerodev/filament-logger)
 
-<p align="center" class="filament-hidden">
-  <img alt="logger banner" src="https://raw.githubusercontent.com/keroles19/filament-logger/main/art/banner.jpeg" />
-</p>
 
 Configurable activity logger for filament.
 Powered by `spatie/laravel-activitylog`
@@ -92,9 +89,9 @@ php artisan vendor:publish --tag="filament-logger-translations"
 The main `Activity` class being used by the Filament Resource instance will be resolved by Spatie's service provider, which loads the model defined by the configuration key found at `activitylog.activity_model` in `config/activitylog.php`.
 
 ## Screenshots
-<img alt="logger-index" src="https://raw.githubusercontent.com/jacobtims/filament-logger/main/art/list-screenshot.png">
-<img alt="logger-detail-1" src="https://raw.githubusercontent.com/jacobtims/filament-logger/main/art/view-screenshot-1.png">
-<img alt="logger-detail-2" src="https://raw.githubusercontent.com/jacobtims/filament-logger/main/art/view-screenshot-2.png">
+<img alt="logger-index" src="https://raw.githubusercontent.com/Z3d0X/filament-logger/main/art/list-screenshot.png">
+<img alt="logger-detail-1" src="https://raw.githubusercontent.com/Z3d0X/filament-logger/main/art/view-screenshot-1.png">
+<img alt="logger-detail-2" src="https://raw.githubusercontent.com/Z3d0X/filament-logger/main/art/view-screenshot-2.png">
 
 ## Changelog
 
