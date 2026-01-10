@@ -77,10 +77,10 @@ abstract class AbstractModelLogger
     public function created(Model $model): void
     {
         $attributes = $this->getLoggableAttributes($model, $model->getAttributes());
-        
+
         // For created events, we store in 'attributes' as there's no 'old' value
         $properties = ['attributes' => $attributes];
-        
+
         $this->log($model, 'Created', attributes: $properties);
     }
 
@@ -104,10 +104,10 @@ abstract class AbstractModelLogger
 
         // Build properties with old and new values
         $properties = [];
-        if (!empty($oldValues)) {
+        if (! empty($oldValues)) {
             $properties['old'] = $this->getLoggableAttributes($model, $oldValues);
         }
-        if (!empty($changes)) {
+        if (! empty($changes)) {
             $properties['attributes'] = $this->getLoggableAttributes($model, $changes);
         }
 
