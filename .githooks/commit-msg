@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+# Remove tooling trailers that should not be stored in project history.
+# Enable once: git config core.hooksPath .githooks
+set -e
+msg_file="${1:?}"
+
+test -f "$msg_file" || exit 0
+
+tmp="$(mktemp)"
+# Strip "Made-with: Cursor" (and similar) lines
+sed '/^Made-with:[[:space:]]*Cursor[[:space:]]*$/d' "$msg_file" > "$tmp"
+mv "$tmp" "$msg_file"

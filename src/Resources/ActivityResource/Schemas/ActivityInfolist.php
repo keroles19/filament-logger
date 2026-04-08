@@ -30,10 +30,11 @@ class ActivityInfolist
                             ->label(__('filament-logger::filament-logger.resource.label.subject'))
                             ->placeholder('-')
                             ->formatStateUsing(function (?Model $record, ?string $state) {
-                                /** @var Activity&ActivityModel $record */
-                                if (! $state || ! $record) {
+                                if ($record === null || $state === null || $state === '') {
                                     return '-';
                                 }
+
+                                /** @var Activity&ActivityModel $record */
 
                                 return ActivitySubjectLabel::format(
                                     $state,
@@ -77,7 +78,13 @@ class ActivityInfolist
                     ->heading(__('filament-logger::filament-logger.resource.label.old'))
                     ->columns()
                     ->columnSpan(2)
-                    ->visible(fn (?Model $record) => $record?->properties?->has('old') ?? false)
+                    ->visible(function (?Model $record): bool {
+                        if (! $record instanceof ActivityModel) {
+                            return false;
+                        }
+
+                        return $record->properties?->has('old') ?? false;
+                    })
                     ->schema([
                         KeyValueEntry::make('properties.old')
                             ->label('')
@@ -88,7 +95,13 @@ class ActivityInfolist
                     ->heading(__('filament-logger::filament-logger.resource.label.new'))
                     ->columns()
                     ->columnSpan(2)
-                    ->visible(fn (?Model $record) => $record?->properties?->has('attributes') ?? false)
+                    ->visible(function (?Model $record): bool {
+                        if (! $record instanceof ActivityModel) {
+                            return false;
+                        }
+
+                        return $record->properties?->has('attributes') ?? false;
+                    })
                     ->schema([
                         KeyValueEntry::make('properties.attributes')
                             ->label('')

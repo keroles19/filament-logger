@@ -4,7 +4,6 @@ namespace Keroles\FilamentLogger\Loggers;
 
 use Filament\Facades\Filament;
 use Illuminate\Auth\Events\Login;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\ActivityLogger;
 use Spatie\Activitylog\ActivityLogStatus;
@@ -16,8 +15,10 @@ class AccessLogger
      */
     public function handle(Login $event): void
     {
-        /** @var Model&Authenticatable $event->user */
         $user = $event->user;
+        if (! $user instanceof Model) {
+            return;
+        }
 
         $description = Filament::getUserName($user).' logged in';
 

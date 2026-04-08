@@ -21,6 +21,25 @@ You can choose what you want to log and how to log it.
 
 Note: By default this package will log Filament Resource Events, Access(Login) Events, and Notification Events. If you want to log a model that is not a FilamentResource you will have to manually register in the config file.
 
+## Development (Git hooks)
+
+This repo includes a **`commit-msg` hook** that removes any `Made-with: Cursor` line from commit messages so it is never stored in history (some editors append that automatically).
+
+After cloning, run **once** from the package root:
+
+```bash
+composer run setup-git-hooks
+```
+
+Or manually:
+
+```bash
+git config core.hooksPath .githooks
+chmod +x .githooks/commit-msg
+```
+
+If a commit tool bypasses hooks, you can still amend with hooks disabled only when needed: `git -c core.hooksPath=/path/to/empty/dir commit --amend …`.
+
 ## Installation
 
 | Plugin Version | Filament Version |
