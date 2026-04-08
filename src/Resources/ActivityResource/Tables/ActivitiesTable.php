@@ -2,6 +2,10 @@
 
 namespace Keroles\FilamentLogger\Resources\ActivityResource\Tables;
 
+use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\ViewAction;
 use Filament\Facades\Filament;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
@@ -12,6 +16,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Keroles\FilamentLogger\Contracts\AuthorizesActivityDeletion;
+use Keroles\FilamentLogger\Support\ActivitySubjectLabel;
 use Spatie\Activitylog\Contracts\Activity;
 use Spatie\Activitylog\Models\Activity as ActivityModel;
 
@@ -19,13 +25,15 @@ class ActivitiesTable
 {
     public static function configure(Table $table): Table
     {
-        return $table
+        $resolveSubject = (bool) config('filament-logger.table.resolve_subject_label', true);
+
+        $table = $table
             ->columns([
                 TextColumn::make('log_name')
                     ->label(__('filament-logger::filament-logger.resource.label.type'))
                     ->badge()
                     ->colors(static::getLogNameColors())
-                    ->formatStateUsing(fn ($state) => ucwords($state))
+                    ->formatStateUsing(fn ($state) => ucwords((string) $state))
                     ->sortable(),
 
                 TextColumn::make('event')
@@ -40,13 +48,18 @@ class ActivitiesTable
 
                 TextColumn::make('subject_type')
                     ->label(__('filament-logger::filament-logger.resource.label.subject'))
-                    ->formatStateUsing(function ($state, Model $record) {
+                    ->formatStateUsing(function ($state, Model $record) use ($resolveSubject) {
                         /** @var Activity&ActivityModel $record */
                         if (! $state) {
                             return '-';
                         }
 
-                        return Str::of($state)->afterLast('\\')->headline().' # '.$record->subject_id;
+                        return ActivitySubjectLabel::format(
+                            $state,
+                            $record->subject_id,
+                            $record->subject,
+                            $resolveSubject,
+                        );
                     }),
 
                 TextColumn::make('causer.name')
@@ -58,7 +71,6 @@ class ActivitiesTable
                     ->sortable(),
             ])
             ->defaultSort('created_at', 'desc')
-            ->toolbarActions([])
             ->filters([
                 SelectFilter::make('log_name')
                     ->label(__('filament-logger::filament-logger.resource.label.type'))
@@ -132,6 +144,63 @@ class ActivitiesTable
                             );
                     }),
             ]);
+
+        if (config('filament-logger.table.global_search', true)) {
+            $table = $table
+                ->searchable()
+                ->searchUsing(function (Builder $query, string $search): Builder {
+                    return $query->where(function (Builder $q) use ($search) {
+                        $term = '%'.$search.'%';
+                        $q->where('description', 'like', $term)
+                            ->orWhere('event', 'like', $term)
+                            ->orWhere('log_name', 'like', $term)
+                            ->orWhere('subject_type', 'like', $term);
+
+                        if (config('filament-logger.table.global_search_properties_old_attributes', true)) {
+                            // Same JSON paths as the "old" / "new" filters: LIKE matches key names and values in the serialized JSON.
+                            $q->orWhere('properties->old', 'like', $term)
+                                ->orWhere('properties->attributes', 'like', $term);
+                        }
+
+                        $trimmed = trim($search);
+                        if ($trimmed !== '' && ctype_digit($trimmed)) {
+                            $q->orWhere('subject_id', (int) $trimmed);
+                        }
+                    });
+                });
+        }
+
+        $toolbarActions = [];
+        if (config('filament-logger.table.bulk_delete', false)) {
+            $toolbarActions[] = BulkActionGroup::make([
+                DeleteBulkAction::make()
+                    ->visible(fn (): bool => static::userCanDeleteActivity()),
+            ]);
+        }
+
+        $table = $table->toolbarActions($toolbarActions);
+
+        $recordActions = [
+            ViewAction::make(),
+        ];
+
+        if (config('filament-logger.table.row_delete', false)) {
+            $recordActions[] = DeleteAction::make()
+                ->visible(fn (): bool => static::userCanDeleteActivity());
+        }
+
+        $table = $table->recordActions($recordActions);
+
+        return $table;
+    }
+
+    protected static function userCanDeleteActivity(): bool
+    {
+        if (! auth()->check()) {
+            return false;
+        }
+
+        return app(AuthorizesActivityDeletion::class)->canDelete(auth()->user());
     }
 
     protected static function getSubjectTypeList(): array
@@ -161,7 +230,7 @@ class ActivitiesTable
             $customs[$custom['log_name']] = $custom['log_name'];
         }
 
-        return array_merge(
+        $list = array_merge(
             config('filament-logger.resources.enabled') ? [
                 config('filament-logger.resources.log_name') => config('filament-logger.resources.log_name'),
             ] : [],
@@ -176,6 +245,12 @@ class ActivitiesTable
             ] : [],
             $customs,
         );
+
+        if (config('filament-logger.table.include_spatie_default_in_type_filter', true)) {
+            $list['default'] = 'default';
+        }
+
+        return $list;
     }
 
     protected static function getLogNameColors(): array
@@ -188,7 +263,7 @@ class ActivitiesTable
             }
         }
 
-        return array_merge(
+        $colors = array_merge(
             (config('filament-logger.resources.enabled') && config('filament-logger.resources.color')) ? [
                 config('filament-logger.resources.color') => config('filament-logger.resources.log_name'),
             ] : [],
@@ -203,6 +278,12 @@ class ActivitiesTable
             ] : [],
             $customs,
         );
+
+        if (config('filament-logger.table.include_spatie_default_in_type_filter', true)) {
+            $colors['gray'] = 'default';
+        }
+
+        return $colors;
     }
 
     protected static function getUsersList(): array

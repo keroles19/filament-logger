@@ -8,6 +8,9 @@ use Illuminate\Auth\Events\Login;
 use Illuminate\Notifications\Events\NotificationFailed;
 use Illuminate\Notifications\Events\NotificationSent;
 use Illuminate\Support\Facades\Event;
+use Keroles\FilamentLogger\Authorization\DenyAllActivityDeletion;
+use Keroles\FilamentLogger\Contracts\AuthorizesActivityDeletion;
+use Keroles\FilamentLogger\Resources\ActivityResource;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -19,8 +22,17 @@ class FilamentLoggerServiceProvider extends PackageServiceProvider
     protected function getResources(): array
     {
         return [
-            config('filament-logger.activity_resource'),
+            config('filament-logger.activity_resource', ActivityResource::class),
         ];
+    }
+
+    public function registeringPackage(): void
+    {
+        parent::registeringPackage();
+
+        $this->app->singleton(AuthorizesActivityDeletion::class, function ($app) {
+            return new DenyAllActivityDeletion;
+        });
     }
 
     public function configurePackage(Package $package): void
@@ -59,7 +71,7 @@ class FilamentLoggerServiceProvider extends PackageServiceProvider
         parent::packageBooted();
 
         if (config('filament-logger.resources.enabled', true)) {
-            $exceptResources = [...config('filament-logger.resources.exclude'), config('filament-logger.activity_resource')];
+            $exceptResources = [...config('filament-logger.resources.exclude'), config('filament-logger.activity_resource', ActivityResource::class)];
 
             $loggableResources = collect(Filament::getPanels())
                 ->flatMap(fn (Panel $panel) => $panel->getResources())

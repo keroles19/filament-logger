@@ -88,10 +88,67 @@ php artisan vendor:publish --tag="filament-logger-translations"
 ## Activity Model resolution
 The main `Activity` class being used by the Filament Resource instance will be resolved by Spatie's service provider, which loads the model defined by the configuration key found at `activitylog.activity_model` in `config/activitylog.php`.
 
+## Configurable Activity resource & table UI
+
+Publish `config/filament-logger.php` and adjust:
+
+- **`activity_resource`**: class used when registering the Filament plugin and list/view pages. Point this to your own `Resource` subclass if you need custom authorization, queries, or pages.
+- **`table.global_search`**: enable the search field on the activity list (searches description, event, log name, subject type, and numeric subject id).
+- **`table.global_search_properties_old_attributes`**: when `global_search` is on, also match Spatie’s **`properties.old`** and **`properties.attributes`** (the “new” values) using `LIKE` on the JSON text, so both **attribute names and values** are searchable (default `true`). Set to `false` on very large tables if needed.
+- **`table.resolve_subject_label`**: when the subject model exists, show `ModelName: {name}` using common attributes (`name`, `title`, `email`, `slug`, or `getName()`).
+- **`table.eager_load_relations`**: relations to eager load on the index query (default `subject`, `causer`).
+- **`table.bulk_delete` / `table.row_delete`**: show bulk delete on the list and/or per-row delete + delete on the view page. **Off by default.**
+- **`table.include_spatie_default_in_type_filter`**: include Spatie’s default `log_name` (`default`) in the type filter and badge colors (useful when using `LogsActivity` only).
+
+## Avoiding duplicate rows (default + Resource + Model)
+
+If you also use Spatie’s `LogsActivity` on models **and** leave `resources.enabled` and `models.enabled` on, the same save can create up to three activity rows (`default`, `Resource`, `Model`). Pick **one** CRUD pipeline per project, for example:
+
+- Spatie-only: set `resources.enabled` and `models.enabled` to `false`, keep `LogsActivity` on your models; **or**
+- Package observers only: disable `LogsActivity` where redundant and use Resource/Model loggers.
+
+Keep `access` / `notifications` enabled if you still want login and notification logs.
+
+## Deleting activity rows (`AuthorizesActivityDeletion`)
+
+Bulk and row deletes (when enabled in `table.*_delete`) are gated by `Keroles\FilamentLogger\Contracts\AuthorizesActivityDeletion`. The package binds a default implementation that **denies all** deletes.
+
+In your app’s `AppServiceProvider::register()` (or a service provider that loads early), bind your own rules, for example:
+
+```php
+use Keroles\FilamentLogger\Contracts\AuthorizesActivityDeletion;
+
+$this->app->singleton(AuthorizesActivityDeletion::class, function () {
+    return new class implements AuthorizesActivityDeletion {
+        public function canDelete(?\Illuminate\Contracts\Auth\Authenticatable $user): bool
+        {
+            return $user !== null && $user->can('deleteAny', \Spatie\Activitylog\Models\Activity::class);
+        }
+    };
+});
+```
+
+You can also register an `ActivityPolicy` (see **Authorization** above) and delegate to `Gate` as in the example.
+
 ## Screenshots
-<img alt="logger-index" src="https://raw.githubusercontent.com/Z3d0X/filament-logger/main/art/list-screenshot.png">
-<img alt="logger-detail-1" src="https://raw.githubusercontent.com/Z3d0X/filament-logger/main/art/view-screenshot-1.png">
-<img alt="logger-detail-2" src="https://raw.githubusercontent.com/Z3d0X/filament-logger/main/art/view-screenshot-2.png">
+
+### Activity logs (list)
+
+Table with type, event, subject (including resolved names), user, and timestamps. Sortable columns.
+
+![Activity logs list](art/list-activity-logs.png)
+
+### Search, filters, and bulk actions
+
+Global search, active filters (e.g. by user), row actions (view / delete), and bulk delete when enabled in config.
+
+![Activity logs with search, filters, and bulk actions](art/list-search-filters-bulk.png)
+
+### View activity log (detail)
+
+Single log view with metadata and **Old** vs **New** attribute comparison (Spatie `properties`).
+
+![View activity log with old and new attributes](art/view-activity-log.png)
 
 ## Changelog
 

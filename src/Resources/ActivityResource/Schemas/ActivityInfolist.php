@@ -7,7 +7,7 @@ use Filament\Infolists\Components\TextEntry;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+use Keroles\FilamentLogger\Support\ActivitySubjectLabel;
 use Spatie\Activitylog\Contracts\Activity;
 use Spatie\Activitylog\Models\Activity as ActivityModel;
 
@@ -31,7 +31,16 @@ class ActivityInfolist
                             ->placeholder('-')
                             ->formatStateUsing(function (?Model $record, ?string $state) {
                                 /** @var Activity&ActivityModel $record */
-                                return $state ? Str::of($state)->afterLast('\\')->headline().' # '.$record->subject_id : '-';
+                                if (! $state || ! $record) {
+                                    return '-';
+                                }
+
+                                return ActivitySubjectLabel::format(
+                                    $state,
+                                    $record->subject_id,
+                                    $record->subject,
+                                    (bool) config('filament-logger.table.resolve_subject_label', true),
+                                );
                             }),
 
                         TextEntry::make('description')

@@ -16,7 +16,7 @@ class FilamentLoggerPlugin implements Plugin
     public function register(Panel $panel): void
     {
         $panel->resources([
-            ActivityResource::class,
+            config('filament-logger.activity_resource', ActivityResource::class),
         ]);
     }
 

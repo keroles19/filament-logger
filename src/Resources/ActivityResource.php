@@ -7,6 +7,7 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Keroles\FilamentLogger\Resources\ActivityResource\Pages\ListActivities;
 use Keroles\FilamentLogger\Resources\ActivityResource\Pages\ViewActivity;
 use Keroles\FilamentLogger\Resources\ActivityResource\Schemas\ActivityInfolist;
@@ -34,6 +35,18 @@ class ActivityResource extends Resource
     public static function table(Table $table): Table
     {
         return ActivitiesTable::configure($table);
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery();
+
+        $relations = config('filament-logger.table.eager_load_relations', ['subject', 'causer']);
+        if (is_array($relations) && $relations !== []) {
+            $query->with($relations);
+        }
+
+        return $query;
     }
 
     public static function getPages(): array
